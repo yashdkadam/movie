@@ -35,14 +35,16 @@ async function temp() {
 temp();
 
 var data1;
+// https://snowfl.com/fanAtGeaLTtxFRLeYIxbQaSAGpMClogkgSrj/Q/a2n2PJJd/0/NONE/24/1?_=1672574618613
 //https://snowfl.com/joENprgGGGgbDEOVBIZhmJTzXHqOFuyvl/spos/6w1cm7jO/0/NONE/NONE/1?_=1672556162514
 async function temp1() {
+  let time = localStorage.getItem("time");
   $.get(
     "https://corsproxy.io/?https://snowfl.com/" +
       token +
-      "/" +
-      key +
-      "/6w1cm7jO/0/NONE/NONE/1?_=1672556162514", // url
+      "/Q/a2n2PJJd/0/NONE/" +
+      time +
+      "/1?_=1672574618613", // url
     function (data, textStatus, jqXHR) {
       // success callback
       data1 = JSON.parse(data);
@@ -52,6 +54,7 @@ async function temp1() {
       //   $(document).ready(function (data1) {
 
       for (let i = 0; i < data1.length; i++) {
+        // localStorage.clear();
         if (data1[i]["magnet"] != undefined) {
           localStorage.setItem(i, data1[i]["magnet"]);
           html += `<a href='/' onclick='setLocal("${i}")'>
@@ -60,6 +63,8 @@ async function temp1() {
             <div class="card-body">
             <h5 class="card-title">${data1[i].name}</h5>
             <p class="card-text">${data1[i].name}</p>
+            <p class="card-text">Seeders : ${data1[i].seeder}</p>
+            <p class="card-text">Lechers : ${data1[i].leecher}</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
             </div>
