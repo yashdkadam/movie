@@ -10,12 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="popcorntime/main.js"></script>
-    <link rel="stylesheet" href="popcorntime/styles.css">
+</head>
 </head>
 
 <body>
@@ -54,14 +50,65 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                    onclick="localStorage.setItem('time','day'); window.location.reload();">Day</button>
+                    onclick="localStorage.setItem('time','24'); window.location.reload();">Day</button>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                    onclick="localStorage.setItem('time','week'); window.location.reload();">Week</button>
+                    onclick="localStorage.setItem('time','168'); window.location.reload();">Week</button>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                    onclick="localStorage.setItem('time','month'); window.location.reload();">Month</button>
+                    onclick="localStorage.setItem('time','720'); window.location.reload();">Month</button>
             </form>
         </div>
     </nav>
+    <div id="player" class="webtor" />
+    <script>
+        var magnet = localStorage.getItem('magnet');
+
+        console.log(magnet);
+        window.webtor = window.webtor || [];
+        window.webtor.push({
+            id: 'player',
+            magnet: magnet,
+            on: function (e) {
+                if (e.name == window.webtor.TORRENT_FETCHED) {
+                    console.log('Torrent fetched!', e.data);
+                }
+                if (e.name == window.webtor.TORRENT_ERROR) {
+                    console.log('Torrent error!');
+                }
+            },
+            poster: 'https://via.placeholder.com/150/0000FF/808080',
+            // subtitles: [
+            //     {
+            //         srclang: 'en',
+            //         label: 'test',
+            //         src: 'https://raw.githubusercontent.com/andreyvit/subtitle-tools/master/sample.srt',
+            //         default: false,
+            //     }
+            // ],
+            features: {
+                fullscreen: true,
+            },
+            lang: 'en',
+            i18n: {
+                en: {
+                    common: {
+                        "prepare to play": "Preparing Video Stream... Please Wait...",
+                    },
+                    stat: {
+                        "seeding": "Seeding",
+                        "waiting": "Client initialization",
+                        "waiting for peers": "Waiting for peers",
+                        "from": "from",
+                    },
+                },
+            },
+        });
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
 </body>
 
 </html>
