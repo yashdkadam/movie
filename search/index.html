@@ -11,6 +11,7 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="../styles.css">
 </head>
 </head>
 
@@ -25,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
-            <a href="./search">
+            <a href="/search">
                 <button class="btn btn-outline-success my-2 my-sm-0 mx-2"
                     onclick="localStorage.setItem('search', $('#search').val())">Search</button>
             </a>
@@ -37,57 +38,7 @@
                 onclick="localStorage.setItem('time','month'); window.location.reload();">Month</button>
         </div>
     </nav>
-    <div id="player" class="webtor" />
-    <script>
-        var magnet = localStorage.getItem('magnet');
-
-        console.log(magnet);
-        window.webtor = window.webtor || [];
-        window.webtor.push({
-            id: 'player',
-            magnet: magnet,
-            on: function (e) {
-                if (e.name == window.webtor.TORRENT_FETCHED) {
-                    console.log('Torrent fetched!', e.data);
-                }
-                if (e.name == window.webtor.TORRENT_ERROR) {
-                    console.log('Torrent error!');
-                }
-            },
-            poster: 'https://via.placeholder.com/150/0000FF/808080',
-            // subtitles: [
-            //     {
-            //         srclang: 'en',
-            //         label: 'test',
-            //         src: 'https://raw.githubusercontent.com/andreyvit/subtitle-tools/master/sample.srt',
-            //         default: false,
-            //     }
-            // ],
-            features: {
-                fullscreen: true,
-            },
-            lang: 'en',
-            i18n: {
-                en: {
-                    common: {
-                        "prepare to play": "Preparing Video Stream... Please Wait...",
-                    },
-                    stat: {
-                        "seeding": "Seeding",
-                        "waiting": "Client initialization",
-                        "waiting for peers": "Waiting for peers",
-                        "from": "from",
-                    },
-                },
-            },
-        });
-
-
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
+    <script src="/search/main.js"></script>
 </body>
 
 </html>
