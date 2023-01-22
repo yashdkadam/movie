@@ -5,9 +5,9 @@ function appendHtml(data, time) {
   var body = "";
   for (let i = 0; i < data.length; i++) {
     if (data[i]["magnet"] != undefined) {
-      body += `<a href='/player' onclick='setLocal("${data[i]["magnet"]}")'>
+      body += `<a href='popcorntime/player' onclick='setLocal("${data[i]["magnet"]}")'>
           <div class="card" style="width: 18rem;">
-            <img src="/static/placeholder.jpg" class="card-img-top" alt="...">
+            <img src="https://i.ibb.co/XCK51m2/placeholder.jpg" class="card-img-top" alt="...">
             <div class="card-body">
             <h5 class="card-title">${data[i].name}</h5>
             <p class="card-text">${data[i].name}</p>
