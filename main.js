@@ -34,7 +34,9 @@ function appendHtml(data, time) {
 }
 async function get() {
   var time = localStorage.getItem("time");
-  var url = "https://curious-parka-yak.cyclic.app/api/torrents/" + time;
+  var url =
+    "https://corsproxy.io/?https://curious-parka-yak.cyclic.app/api/torrents/" +
+    time;
   const response = await fetch(url).then((d) => d.json());
   console.log(response);
   appendHtml(response, time);
